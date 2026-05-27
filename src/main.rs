@@ -121,7 +121,7 @@ fn list_expenses() -> Result<(), Box<dyn Error>> {
     println!("{}", "-".repeat(50));
     for result in rdr.deserialize() {
         let record:Record = result?;
-       println!("{:<?} {:<10.2} {:<15} {}", record.spend_type,record.amount, record.category, record.description);
+       println!("{:?} {:<10.2} {:<15} {}", record.spend_type,record.amount, record.category, record.description);
        total += record.amount;
        count += 1;
     }
