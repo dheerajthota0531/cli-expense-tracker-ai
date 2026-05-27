@@ -174,7 +174,7 @@ fn add_expenses() -> Result<(), Box<dyn Error>> {
     let desc = expense_description.trim().to_string();
 
     let  new_expense = Record{
-        spend_type:spend_type,
+        spend_type,
         amount:amt,
         category:cate,
         description:desc,
