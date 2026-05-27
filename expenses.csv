@@ -1,24 +1,30 @@
-amount,category,description
-1200,Food,Burger King
-250,Travel,Metro Ticket
-499,Entertainment,Netflix Subscription
-80,Food,Coffee
-1500,Rent,Room Rent
-320,Shopping,Tshirt
-999,Electronics,Keyboard
-60,Food,Tea
-450,Travel,Cab Ride
-2000,Health,Gym Membership
-75,Food,Snacks
-120,Utilities,Electricity Bill
-899,Entertainment,Movie Night
-540,Shopping,Shoes
-300,Food,Pizza
-1100,Education,Online Course
-45,Food,Water Bottle
-700,Travel,Train Ticket
-2500,Electronics,Monitor Stand
-150,Health,Medicines
-300.0,food,zepto
-600.0,zepto,food
-900.0,zepto,food
+type,amount,category,description
+expense,1200,Food,Burger King
+expense,250,Travel,Metro Ticket
+expense,499,Entertainment,Netflix Subscription
+expense,80,Food,Coffee
+expense,1500,Rent,Room Rent
+expense,320,Shopping,Tshirt
+expense,999,Electronics,Keyboard
+expense,60,Food,Tea
+expense,450,Travel,Cab Ride
+expense,2000,Health,Gym Membership
+expense,75,Food,Snacks
+expense,120,Utilities,Electricity Bill
+expense,899,Entertainment,Movie Night
+expense,540,Shopping,Shoes
+expense,300,Food,Pizza
+income,50000,Salary,Monthly Salary
+income,12000,Freelance,Rust API Project
+expense,1100,Education,Online Course
+expense,45,Food,Water Bottle
+income,2500,Investments,Stock Profit
+expense,700,Travel,Train Ticket
+expense,2500,Electronics,Monitor Stand
+expense,150,Health,Medicines
+income,3000,Gift,Birthday Gift
+income,500.0,Education,course
+income,900.0,Food,Blinkit
+expense,800.0,Food,Blinkit
+income,2500.0,Cigs,Boredem
+expense,70000.0,Purchase,bike
