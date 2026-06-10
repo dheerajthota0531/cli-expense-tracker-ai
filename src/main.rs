@@ -58,6 +58,12 @@ fn main() {
                 if let Err(e) =summary(){
                     eprintln!("{:?}", e);
                 }
+            },
+            "AI" => {
+                println!("You're now talking to Ai");
+                if let Err(e) = ai::start_chat() {
+                    eprintln!("{:?}", e);
+                }
             }
             _ => println!("add or list"),
         }
