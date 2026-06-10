@@ -4,6 +4,7 @@ use std::{
     fs::{File, OpenOptions},
     io,
 };
+mod ai;
 
 use std::collections::HashMap;
 #[derive(Debug, serde::Deserialize, serde::Serialize)]
