@@ -17,7 +17,7 @@ struct ChatResponse {
     done: bool,
 }
 
-pub fn start_chat() -> Result<(), Box<dyn std::error::Error>> {
+pub fn start_chat(system_context: String) -> Result<(), Box<dyn std::error::Error>> {
     let rt = tokio::runtime::Runtime::new()?;
     rt.block_on(async {
         let client = Client::new();
@@ -41,7 +41,11 @@ pub fn start_chat() -> Result<(), Box<dyn std::error::Error>> {
 
             let payload = ChatRequest {
                 model: "gemma3:12b".into(),
-                prompt: conversation.clone(),
+                prompt: format!(
+                        "{}\n\nConversation:\n{}",
+                        system_context,
+                        conversation
+                    ),
                 stream: true,
             };
 

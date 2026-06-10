@@ -61,10 +61,12 @@ fn main() {
             },
             "AI" => {
                 println!("You're now talking to Ai");
-                if let Err(e) = ai::start_chat() {
+
+                let context = build_ai_context().unwrap();
+                if let Err(e) = ai::start_chat(context) {
                     eprintln!("{:?}", e);
                 }
-            }
+           }
             _ => println!("add or list"),
         }
     }
@@ -193,4 +195,64 @@ fn add_expenses() -> Result<(), Box<dyn Error>> {
     println!("Added successfully" );
     
     Ok(())
+}
+
+
+pub fn build_ai_context() -> Result<String, Box<dyn Error>> {
+    let file = File::open("expenses.csv")?;
+    let mut rdr = csv::Reader::from_reader(file);
+
+    let mut total_income = 0.0;
+    let mut total_expense = 0.0;
+
+    let mut categories: HashMap<String, f64> = HashMap::new();
+
+    for result in rdr.deserialize() {
+        let record: Record = result?;
+
+        match record.spend_type {
+            RecordType::Income => {
+                total_income += record.amount;
+            }
+
+            RecordType::Expense => {
+                total_expense += record.amount;
+
+                let entry = categories.entry(record.category).or_insert(0.0);
+                *entry += record.amount;
+            }
+        }
+    }
+
+    let mut context = String::new();
+
+    context.push_str(
+        "You are an AI financial assistant.\n\
+         Analyze the user's expenses and provide budgeting advice.\n\n",
+    );
+
+    context.push_str(&format!(
+        "Total Income: {:.2}\n",
+        total_income
+    ));
+
+    context.push_str(&format!(
+        "Total Expense: {:.2}\n",
+        total_expense
+    ));
+
+    context.push_str(&format!(
+        "Net Savings: {:.2}\n\n",
+        total_income - total_expense
+    ));
+
+    context.push_str("Category Breakdown:\n");
+
+    for (category, amount) in categories {
+        context.push_str(
+            &format!("{} => {:.2}\n", category, amount)
+        );
+    }
+
+    Ok(context)
 }
